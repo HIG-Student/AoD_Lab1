@@ -69,7 +69,7 @@ public class ParenthesisBalanceChecker
     /**
      * Result from parenthesis balance check
      * 
-     * @author ndi14vhp
+     * @author Viktor Hanstorp (ndi14vhp@student.hig.se)
      */
     static class Result
     {
@@ -117,7 +117,7 @@ public class ParenthesisBalanceChecker
     /**
      * Representation for a parenthesis
      * 
-     * @author ndi14vhp
+     * @author Viktor Hanstorp (ndi14vhp@student.hig.se)
      */
     static class Parenthesis
     {
