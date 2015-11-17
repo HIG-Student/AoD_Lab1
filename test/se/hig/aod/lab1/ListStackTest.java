@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * Test the ListStack
+ * 
  * @author Viktor Hanstorp (ndi14vhp@student.hig.se) <br>
  * <br>
  *         Based on work by: Peter Jenke

@@ -5,20 +5,25 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
+ * Test the ParenthesisBalanceChecker
+ * 
  * @author Viktor Hanstorp (ndi14vhp@student.hig.se)
  */
 public class ParenthesisBalanceCheckerTest
 {
-    public void assertBalanced(String toTest)
+    void assertBalanced(String toTest)
     {
         assertTrue("'" + toTest + "' is not true!", ParenthesisBalanceChecker.checkBalance(toTest).balanced);
     }
 
-    public void assertUnbalanced(String toTest)
+    void assertUnbalanced(String toTest)
     {
         assertFalse("'" + toTest + "' is not false!", ParenthesisBalanceChecker.checkBalance(toTest).balanced);
     }
 
+    /**
+     * Test some correctly formatted parenthesis strings
+     */
     @Test
     public void testCorrectPure()
     {
@@ -29,6 +34,9 @@ public class ParenthesisBalanceCheckerTest
         assertBalanced("");
     }
 
+    /**
+     * Test some correctly formatted parenthesis strings with characters inside
+     */
     @Test
     public void testCorrectMess()
     {
@@ -39,6 +47,9 @@ public class ParenthesisBalanceCheckerTest
         assertBalanced("eee");
     }
 
+    /**
+     * Test some incorrectly formatted parenthesis strings
+     */
     @Test
     public void testIncorrectPure()
     {
@@ -49,6 +60,10 @@ public class ParenthesisBalanceCheckerTest
         assertUnbalanced("))))");
     }
 
+    /**
+     * Test some incorrectly formatted parenthesis strings with characters
+     * inside
+     */
     @Test
     public void testIncorrectMess()
     {
