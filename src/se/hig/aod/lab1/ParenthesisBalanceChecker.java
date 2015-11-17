@@ -3,7 +3,7 @@ package se.hig.aod.lab1;
 import java.util.HashMap;
 
 /**
- * En klass som använder sig av en stack för att kontrollera parentesuttryck.
+ * A class that uses a stack to check parenthesis expressions
  * 
  * @author Viktor Hanstorp (ndi14vhp@student.hig.se) <br>
  * <br>
