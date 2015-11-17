@@ -13,27 +13,51 @@ import org.junit.Test;
  */
 public class ListQueueTest
 {
+    /**
+     * The queue we are testing
+     */
     ListQueue<Character> testQueue;
+    /**
+     * Characters to test
+     */
     char[] fixture = { 'a', 'b', 'c', 'd' };
 
+    /**
+     * Set up a empty queue
+     * 
+     * @throws Exception
+     *             on error
+     */
     @Before
     public void setUp() throws Exception
     {
         testQueue = new ListQueue<Character>();
     }
 
+    /**
+     * Some "clean up" (not really needed)
+     * 
+     * @throws Exception
+     *             on error
+     */
     @After
     public void tearDown() throws Exception
     {
         testQueue = null;
     }
 
+    /**
+     * A queue should be empty when created, lets check
+     */
     @Test
     public void testNewQueueIsEmpty()
     {
         assertTrue("A new instance cannot contain any item!", testQueue.isEmpty());
     }
 
+    /**
+     * A queue should not be empty after we put something in it, lets check
+     */
     @Test
     public void testQueueWithItemNotEmpty()
     {
@@ -41,12 +65,19 @@ public class ListQueueTest
         assertFalse("Containing an item but empty!", testQueue.isEmpty());
     }
 
+    /**
+     * The queue should throw QueueEmptyException if you try to dequeue from a
+     * empty queue, lets check
+     */
     @Test(expected = QueueEmptyException.class)
     public void testDequeueOnEmptyQueue()
     {
         testQueue.dequeue();
     }
 
+    /**
+     * The queue should be empty if you remove stuff you put in, lets check
+     */
     @Test
     public void testQueueIsEmptyAfterDequeue()
     {
@@ -55,12 +86,20 @@ public class ListQueueTest
         assertTrue("Not empty after dequeue!", testQueue.isEmpty());
     }
 
+    /**
+     * The queue should throw QueueEmptyException if you try to peek on a empty
+     * queue, lets check
+     */
     @Test(expected = QueueEmptyException.class)
     public void testFrontOnEmptyQueue()
     {
         testQueue.getFront();
     }
 
+    /**
+     * The queue's 'front' method should give us a peek on the first element,
+     * lets check
+     */
     @Test
     public void testFront()
     {
@@ -74,6 +113,9 @@ public class ListQueueTest
         assertEquals("Incorrect front after dequeue!", new Character('b'), testQueue.getFront());
     }
 
+    /**
+     * The queue should be First-In First-Out, lets check
+     */
     @Test
     public void testDequeueOrder()
     {
@@ -86,6 +128,10 @@ public class ListQueueTest
         assertTrue("Not empty after dequeues!", testQueue.isEmpty());
     }
 
+    /**
+     * The queue should be empty when cleared (even if it already was empty),
+     * lets check
+     */
     @Test
     public void testClearEmptyQueue()
     {
@@ -93,6 +139,9 @@ public class ListQueueTest
         assertTrue("Clear seems to be inversed?", testQueue.isEmpty());
     }
 
+    /**
+     * The queue should be empty when cleared, lets check
+     */
     @Test
     public void testClearDequeueulatedQueue()
     {

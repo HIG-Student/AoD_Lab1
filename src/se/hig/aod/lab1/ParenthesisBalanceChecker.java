@@ -11,6 +11,13 @@ import java.util.HashMap;
  */
 public class ParenthesisBalanceChecker
 {
+    /**
+     * Checks the parenthesis-balance of provided string
+     * 
+     * @param uttryck
+     *            string to check
+     * @return {@link Result} of the check
+     */
     public static Result checkBalance(String uttryck)
     {
         Stack<Parenthesis> charStack = new ListStack<Parenthesis>();
@@ -42,30 +49,50 @@ public class ParenthesisBalanceChecker
                 break;
             }
         }
-        
+
         if (!charStack.isEmpty())
         {
-            
+
             int[] errors = new int[charStackLength];
-            
-            for(int i = 0;i < charStackLength;i++)
+
+            for (int i = 0; i < charStackLength; i++)
             {
                 errors[i] = charStack.pop().position;
             }
-            
+
             return new Result(errors);
         }
 
         return new Result(mappings);
     }
 
+    /**
+     * Result from parenthesis balance check
+     * 
+     * @author ndi14vhp
+     */
     static class Result
     {
+        /**
+         * Is it balanced?
+         */
         public final boolean balanced;
 
+        /**
+         * Mappings for open and close parenthesis
+         */
         public final HashMap<Parenthesis, Parenthesis> mappings;
+        /**
+         * Array with unbalanced parenthesis
+         */
         public final int[] errorAt;
 
+        /**
+         * Result of balance check (balanced)
+         * 
+         * @param mappings
+         *            between open and close parenthesis
+         */
         public Result(HashMap<Parenthesis, Parenthesis> mappings)
         {
             balanced = true;
@@ -73,6 +100,12 @@ public class ParenthesisBalanceChecker
             this.mappings = mappings;
         }
 
+        /**
+         * Result of balance check (unbalanced)
+         * 
+         * @param errorAt
+         *            array of unbalanced parenthesis
+         */
         public Result(int[] errorAt)
         {
             this.balanced = false;
@@ -81,11 +114,27 @@ public class ParenthesisBalanceChecker
         }
     }
 
+    /**
+     * Representation for a parenthesis
+     * 
+     * @author ndi14vhp
+     */
     static class Parenthesis
     {
+        /**
+         * Open-parenthesis (true) or Close-parenthesis (false)?
+         */
         public final boolean open;
+        /**
+         * The position of this parenthesis
+         */
         public final int position;
 
+        /**
+         * Representation of a parenthesis
+         * @param open Open-parenthesis (true) or Close-parenthesis (false)?
+         * @param position The position of this parenthesis
+         */
         public Parenthesis(boolean open, int position)
         {
             this.open = open;

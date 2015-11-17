@@ -13,27 +13,51 @@ import org.junit.Test;
  */
 public class ListStackTest
 {
+    /**
+     * The stack we are testing
+     */
     ListStack<Character> testStack;
+    /**
+     * Characters to test
+     */
     char[] fixture = { 'a', 'b', 'c', 'd' };
 
+    /**
+     * Set up a empty stack
+     * 
+     * @throws Exception
+     *             on error
+     */
     @Before
     public void setUp() throws Exception
     {
         testStack = new ListStack<Character>();
     }
 
+    /**
+     * Some "clean up" (not really needed)
+     * 
+     * @throws Exception
+     *             on error
+     */
     @After
     public void tearDown() throws Exception
     {
         testStack = null;
     }
 
+    /**
+     * A stack should be empty when created, lets check
+     */
     @Test
     public void testNewStackIsEmpty()
     {
         assertTrue("A new instance cannot contain any item!", testStack.isEmpty());
     }
 
+    /**
+     * A stack should not be empty after we put something in it, lets check
+     */
     @Test
     public void testStackWithItemNotEmpty()
     {
@@ -41,12 +65,19 @@ public class ListStackTest
         assertFalse("Containing an item but empty!", testStack.isEmpty());
     }
 
+    /**
+     * The stack should throw StackEmptyException if you try to destack from a
+     * empty stack, lets check
+     */
     @Test(expected = StackEmptyException.class)
     public void testPopOnEmptyStack()
     {
         testStack.pop();
     }
 
+    /**
+     * The stack should be empty if you remove stuff you put in, lets check
+     */
     @Test
     public void testStackIsEmptyAfterPop()
     {
@@ -54,13 +85,21 @@ public class ListStackTest
         testStack.pop();
         assertTrue("Not empty after pop!", testStack.isEmpty());
     }
-    
+
+    /**
+     * The stack should throw StackEmptyException if you try to peek on a empty
+     * stack, lets check
+     */
     @Test(expected = StackEmptyException.class)
     public void testTopOnEmptyStack()
     {
         testStack.top();
     }
-    
+
+    /**
+     * The stack's 'front' method should give us a peek on the first element,
+     * lets check
+     */
     @Test
     public void testTop()
     {
@@ -74,6 +113,9 @@ public class ListStackTest
         assertEquals("Incorrect top after pop!", new Character('b'), testStack.top());
     }
 
+    /**
+     * The stack should be First-In Last-Out, lets check
+     */
     @Test
     public void testPopOrder()
     {
@@ -89,10 +131,14 @@ public class ListStackTest
 
         for (Character c : expected)
             assertEquals("Incorrect pop order!", c, testStack.pop());
-        
+
         assertTrue("Not empty after pops!", testStack.isEmpty());
     }
 
+    /**
+     * The stack should be empty when cleared (even if it already was empty),
+     * lets check
+     */
     @Test
     public void testClearEmptyStack()
     {
@@ -100,14 +146,17 @@ public class ListStackTest
         assertTrue("Clear seems to be inversed?", testStack.isEmpty());
     }
 
+    /**
+     * The stack should be empty when cleared, lets check
+     */
     @Test
     public void testClearPopulatedStack()
     {
         for (Character c : fixture)
             testStack.push(c);
-        
+
         testStack.clear();
-        
+
         assertTrue("Not empty after clear!", testStack.isEmpty());
     }
 }

@@ -25,7 +25,6 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class ParenthesisBalanceCheckerGUI extends JFrame
 {
-
     private JPanel contentPane;
     private JTextField textField;
     private JTextPane textPane;
@@ -61,7 +60,7 @@ public class ParenthesisBalanceCheckerGUI extends JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 690, 124);
         setLocationRelativeTo(null);
-        
+
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -82,7 +81,7 @@ public class ParenthesisBalanceCheckerGUI extends JFrame
                 else
                 {
                     textPane.setText(textField.getText());
-                    
+
                     System.out.println(result.errorAt.length);
 
                     StyleContext sc = StyleContext.getDefaultStyleContext();
@@ -95,7 +94,7 @@ public class ParenthesisBalanceCheckerGUI extends JFrame
                         textPane.moveCaretPosition(i + 1);
                         textPane.setCharacterAttributes(aset, true);
                     }
-                    
+
                     JOptionPane.showMessageDialog(ParenthesisBalanceCheckerGUI.this, "This string have unbalanced parenthesis", "Result", JOptionPane.WARNING_MESSAGE);
                 }
             }
