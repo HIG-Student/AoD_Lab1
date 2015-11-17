@@ -44,6 +44,9 @@ public class ParenthesisBalanceCheckerTest
         assertBalanced("b(bb(b)bbb)b");
         assertBalanced("((c)cc()c)");
         assertBalanced("dd(d(()dd(d)))d");
+        assertBalanced("(\\()");
+        assertBalanced("()\\)");
+        assertBalanced("\\)");
         assertBalanced("eee");
     }
 
@@ -53,11 +56,15 @@ public class ParenthesisBalanceCheckerTest
     @Test
     public void testIncorrectPure()
     {
+        assertUnbalanced("(");
+        assertUnbalanced(")");
         assertUnbalanced(")(");
         assertUnbalanced("())");
         assertUnbalanced("(()");
         assertUnbalanced("((((");
         assertUnbalanced("))))");
+        assertUnbalanced("))\\))");
+        assertUnbalanced("\\))");
     }
 
     /**
@@ -72,5 +79,7 @@ public class ParenthesisBalanceCheckerTest
         assertUnbalanced("cccc(c(c)cc");
         assertUnbalanced("d(d(d((");
         assertUnbalanced("eee)))e)eeeeee");
+        assertUnbalanced("fff\\)))f)fff");
+        assertUnbalanced("gg\\(((g(g");
     }
 }

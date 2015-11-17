@@ -47,6 +47,9 @@ public class ParenthesisBalanceChecker
                 mappings.put(from, new Parenthesis(false, i));
 
                 break;
+            case '\\': // skip char after this
+                i++;
+                break;
             }
         }
 
