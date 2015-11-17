@@ -8,9 +8,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import se.hig.ad1.lab1.Queue;
-import se.hig.ad1.lab1.ListQueue;
-import se.hig.ad1.lab1.QueueIsEmptyException;
+import se.hig.aod.lab1.ListQueue;
+import se.hig.aod.lab1.Queue;
+import se.hig.aod.lab1.QueueIsEmptyException;
 
 /**
  * A class that uses a {@link Queue}
