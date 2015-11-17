@@ -132,8 +132,11 @@ public class ParenthesisBalanceChecker
 
         /**
          * Representation of a parenthesis
-         * @param open Open-parenthesis (true) or Close-parenthesis (false)?
-         * @param position The position of this parenthesis
+         * 
+         * @param open
+         *            Open-parenthesis (true) or Close-parenthesis (false)?
+         * @param position
+         *            The position of this parenthesis
          */
         public Parenthesis(boolean open, int position)
         {
