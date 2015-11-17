@@ -15,8 +15,8 @@ public interface MyQueue<T>
     public T peek();
 
     /**
-     * Peek on a element in the queue
-     * <br><br>
+     * Peek on a element in the queue <br>
+     * <br>
      * Negative index begins at the end of the queue
      * 
      * @param index
@@ -33,13 +33,14 @@ public interface MyQueue<T>
     public int getSize();
 
     /**
-     * Append a element to the queue
+     * Append multiple elements (0 or more) to the queue
      * 
      * @param element
-     *            the element to append
+     *            the elements to append
      * @return this queue (for chaining)
      */
-    public MyQueue<T> append(T element);
+    @SuppressWarnings("unchecked")
+    public MyQueue<T> append(T... element);
 
     /**
      * Fetch the first element
@@ -47,6 +48,13 @@ public interface MyQueue<T>
      * @return the element (or null if empty)
      */
     public T fetch();
+
+    /**
+     * Rotates the queue (puts the first element last)
+     * 
+     * @return the rotated element (or null if empty)
+     */
+    public T rotate();
 
     /**
      * Clear the queue
