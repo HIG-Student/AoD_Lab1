@@ -1,19 +1,22 @@
-package se.hig.aod.grupp;
+package se.hig.aod.lab1;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestCheckBalance
+/**
+ * @author Viktor Hanstorp (ndi14vhp@student.hig.se)
+ */
+public class ParenthesisBalanceCheckerTest
 {
     public void assertBalanced(String toTest)
     {
-        assertTrue("'" + toTest + "' is not true!", CheckBalance.isBalanced(toTest));
+        assertTrue("'" + toTest + "' is not true!", ParenthesisBalanceChecker.checkBalance(toTest).balanced);
     }
 
     public void assertUnbalanced(String toTest)
     {
-        assertFalse("'" + toTest + "' is not false!", CheckBalance.isBalanced(toTest));
+        assertFalse("'" + toTest + "' is not false!", ParenthesisBalanceChecker.checkBalance(toTest).balanced);
     }
 
     @Test
