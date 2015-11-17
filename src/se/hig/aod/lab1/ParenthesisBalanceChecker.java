@@ -144,4 +144,106 @@ public class ParenthesisBalanceChecker
             this.position = position;
         }
     }
+    
+    /**
+     * Representation for a parenthesis entry
+     * 
+     * @author Viktor Hanstorp (ndi14vhp@student.hig.se)
+     */
+    static abstract class ParenthesisEntry
+    {
+        public abstract String getText();
+        public abstract boolean isOnlyText();
+        public abstract ParenthesisEntry[] getChildren();
+    }
+
+    /**
+     * Representation for a parenthesis
+     * 
+     * @author Viktor Hanstorp (ndi14vhp@student.hig.se)
+     */
+    static class ParenthesisText extends ParenthesisEntry
+    {
+        public final String text;
+
+        public ParenthesisText(String text)
+        {
+            this.text = text;
+        }
+
+        public String getText()
+        {
+            return text;
+        }
+
+        public ParenthesisEntry[] getChildren()
+        {
+            return new ParenthesisEntry[0];
+        }
+        
+        public boolean isOnlyText()
+        {
+            return true;
+        }
+    }
+
+    /**
+     * Representation for a parenthesis
+     * 
+     * @author Viktor Hanstorp (ndi14vhp@student.hig.se)
+     */
+    static class ParenthesisPair extends ParenthesisEntry
+    {
+        /**
+         * The opening parenthesis
+         */
+        public final Parenthesis open;
+
+        /**
+         * The content in this parenthesis pair
+         */
+        public final ParenthesisEntry[] content;
+
+        /**
+         * The closing parenthesis
+         */
+        public final Parenthesis close;
+
+        /**
+         * Representation of a parenthesis pair
+         * 
+         * @param open
+         *            opening parenthesis
+         * @param content
+         *            content in the parenthesis
+         * @param close
+         *            closing parenthesis
+         */
+        public ParenthesisPair(Parenthesis open, ParenthesisEntry[] content, Parenthesis close)
+        {
+            this.open = open;
+            this.content = content;
+            this.close = close;
+        }
+
+        public String getText()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.append("(");
+            for (ParenthesisEntry entry : content)
+                builder.append(entry.getText());
+            builder.append(")");
+            return builder.toString();
+        }
+
+        public ParenthesisEntry[] getChildren()
+        {
+            return content;
+        }
+        
+        public boolean isOnlyText()
+        {
+            return false;
+        }
+    }
 }
