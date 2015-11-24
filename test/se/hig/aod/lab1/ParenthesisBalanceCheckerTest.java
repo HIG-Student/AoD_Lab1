@@ -2,6 +2,8 @@ package se.hig.aod.lab1;
 
 import static org.junit.Assert.*;
 
+import java.util.Stack;
+
 import org.junit.Test;
 
 /**
@@ -27,6 +29,7 @@ public class ParenthesisBalanceCheckerTest
     @Test
     public void testCorrectPure()
     {
+        assertBalanced("");
         assertBalanced("()");
         assertBalanced("(())");
         assertBalanced("(()())");

@@ -37,6 +37,13 @@ public interface MyQueue<T>
      * @return the element (or null if empty)
      */
     public T fetch();
+    
+    /**
+     * Check if it contains an object
+     * 
+     * @return true if it contains the object, else false
+     */
+    public boolean contais(T object);
 
     /**
      * Rotates the queue (puts the first element last)

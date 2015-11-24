@@ -75,7 +75,7 @@ public class ParenthesisBalanceCheckerGUI extends JFrame
                 ParenthesisBalanceChecker.Result result = ParenthesisBalanceChecker.checkBalance(textField.getText());
 
                 // Inspiration from:
-                // http://stackoverflow.com/a/5857747
+                // http://stackoverflow.com/a/5857747        #revision 2 at 2015-11-24
 
                 textPane.setText(textField.getText());
                 textPane.setCaretPosition(0);
