@@ -37,10 +37,12 @@ public interface MyQueue<T>
      * @return the element (or null if empty)
      */
     public T fetch();
-    
+
     /**
      * Check if it contains an object
      * 
+     * @param object
+     *            the object to check for
      * @return true if it contains the object, else false
      */
     public boolean contais(T object);

@@ -2,8 +2,6 @@ package se.hig.aod.lab1;
 
 import static org.junit.Assert.*;
 
-import java.util.Stack;
-
 import org.junit.Test;
 
 /**
