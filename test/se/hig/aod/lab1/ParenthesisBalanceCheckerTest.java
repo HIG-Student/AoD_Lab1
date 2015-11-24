@@ -63,8 +63,6 @@ public class ParenthesisBalanceCheckerTest
         assertUnbalanced("(()");
         assertUnbalanced("((((");
         assertUnbalanced("))))");
-        assertUnbalanced("))\\))");
-        assertUnbalanced("\\))");
     }
 
     /**

@@ -15,17 +15,6 @@ public interface MyQueue<T>
     public T peek();
 
     /**
-     * Peek on a element in the queue <br>
-     * <br>
-     * Negative index begins at the end of the queue
-     * 
-     * @param index
-     *            the index of the element
-     * @return the element (or null if empty)
-     */
-    public T peek(int index);
-
-    /**
      * Get the size of the queue
      * 
      * @return the size

@@ -18,9 +18,10 @@ import javax.swing.JTextPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.HashMap;
 
 /**
- * @author  Viktor Hanstorp (ndi14vhp@student.hig.se)
+ * @author Viktor Hanstorp (ndi14vhp@student.hig.se)
  */
 @SuppressWarnings("serial")
 public class ParenthesisBalanceCheckerGUI extends JFrame
@@ -75,31 +76,39 @@ public class ParenthesisBalanceCheckerGUI extends JFrame
 
                 // Inspiration from:
                 // http://stackoverflow.com/a/5857747
-                
+
                 textPane.setText(textField.getText());
                 textPane.setCaretPosition(0);
                 textPane.moveCaretPosition(textField.getText().length());
-                textPane.setCharacterAttributes(getBLACK(),true);
-                
-                if (result.balanced)
-                {
-                    JOptionPane.showMessageDialog(ParenthesisBalanceCheckerGUI.this, "This string have balanced parenthesis", "Result", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else
+                textPane.setCharacterAttributes(getColor(Color.BLACK), true);
+
+                if (!result.balanced)
                 {
                     for (int i : result.errorAt)
                     {
                         textPane.setCaretPosition(i);
                         textPane.moveCaretPosition(i + 1);
-                        textPane.setCharacterAttributes(getRED(),true);
+                        textPane.setCharacterAttributes(getColor(Color.RED), true);
                     }
-                    
-                    textPane.setCaretPosition(result.errorAt[result.errorAt.length-1]);
-                    textPane.moveCaretPosition(textField.getText().length());
-                    textPane.setCharacterAttributes(getRED(),true);
 
-                    JOptionPane.showMessageDialog(ParenthesisBalanceCheckerGUI.this, "This string have unbalanced parenthesis", "Result", JOptionPane.WARNING_MESSAGE);
+                    textPane.setCaretPosition(result.errorAt[result.errorAt.length - 1]);
+                    textPane.moveCaretPosition(textField.getText().length());
+                    textPane.setCharacterAttributes(getColor(Color.RED), true);
                 }
+
+                for (int i = 0; i < textPane.getText().length() - 1; i++)
+                    if (textPane.getText().charAt(i) == '\\' && (textPane.getText().charAt(i + 1) == '(' || textPane.getText().charAt(i + 1) == ')'))
+                    {
+                        textPane.setCaretPosition(i);
+                        textPane.moveCaretPosition(i + 2);
+                        textPane.setCharacterAttributes(getColor(Color.BLUE), true);
+                    }
+
+                if (result.balanced)
+                    JOptionPane.showMessageDialog(ParenthesisBalanceCheckerGUI.this, "This string have balanced parenthesis", "Result", JOptionPane.INFORMATION_MESSAGE);
+                else
+                    JOptionPane.showMessageDialog(ParenthesisBalanceCheckerGUI.this, "This string have unbalanced parenthesis", "Result", JOptionPane.WARNING_MESSAGE);
+
             }
         });
         contentPane.add(btnCheck, BorderLayout.CENTER);
@@ -112,28 +121,20 @@ public class ParenthesisBalanceCheckerGUI extends JFrame
         textPane.setEditable(false);
         contentPane.add(textPane, BorderLayout.SOUTH);
     }
-    
-    AttributeSet RED;
-    AttributeSet getRED()
-    {
-        if(RED != null)
-            return RED;
-        
-        StyleContext sc = StyleContext.getDefaultStyleContext();
-        RED = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.RED);
-        RED = sc.addAttribute(RED, StyleConstants.FontFamily, "TIMES NEW ROMAN");
-        return RED;
-    }
 
-    AttributeSet BLACK;
-    AttributeSet getBLACK()
+    HashMap<Color, AttributeSet> attributes = new HashMap<Color, AttributeSet>();
+
+    AttributeSet getColor(Color color)
     {
-        if(BLACK != null)
-            return BLACK;
-        
+        if (attributes.containsKey(color))
+            return attributes.get(color);
+
         StyleContext sc = StyleContext.getDefaultStyleContext();
-        BLACK = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.BLACK);
-        BLACK = sc.addAttribute(BLACK, StyleConstants.FontFamily, "TIMES NEW ROMAN");
-        return BLACK;
+        AttributeSet result = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, color);
+        result = sc.addAttribute(result, StyleConstants.FontFamily, "TIMES NEW ROMAN");
+
+        attributes.put(color, result);
+
+        return result;
     }
 }
