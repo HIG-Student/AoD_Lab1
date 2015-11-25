@@ -41,7 +41,7 @@ public interface MyList<T>
      * @return this list (for chaining)
      */
     @SuppressWarnings("unchecked")
-    public MyList<T> add(int start, T... element);
+    public MyList<T> addAt(int start, T... element);
 
     /**
      * Check if the list contains an specified object
